@@ -20,18 +20,21 @@
 
     <div class="container mt-3 mb-2">
         <div class="row">
-            <div class="col-3">
+            <div class="col-2">
                 <a class="d-none d-md-block" style="text-decoration: none; font-size: 16px" href="#">
                     <img src="{% static 'images/perfumaria-icon.png' %}" style="height: 70px" alt="Perfumaria">
                     Perfumaria
                 </a>
                 <a class="d-block d-md-none" style="text-decoration: none; font-size: 16px" href="#">
-                    <img src="{% static 'images/perfumaria-icon.png' %}" style="height: 70px" alt="Perfumaria">
+                    <img src="{% static 'images/perfumaria-icon.png' %}" style="width: 70px; height: 70px" alt="Perfumaria">
                 </a>
             </div>
             <div class="col-6 d-flex align-items-center justify-content-center">
-                <a class="d-none d-md-block" href="#">
+                <a class="d-none d-lg-block" href="#">
                     <img src="{% static 'images/banner.png' %}" style="height: 80px; width: 500px" alt="Divulgação"/>
+                </a>
+                <a class="d-block d-lg-none" href="#">
+                    
                 </a>
             </div>
             <!--<div class="col-2 d-flex align-items-center justify-content-end">
@@ -45,19 +48,40 @@
                     </div>
                 </div>
             </div>-->
-            <div class="col-3 d-flex justify-content-end align-items-center">
-                <div class="d-none d-lg-block">
+            <div class="col-4 d-flex justify-content-end align-items-center">
+                <div class="d-none d-lg-block p-1">
                     <div class="d-flex justify-content-center">
                         <a style="text-decoration: none" class="pl-1" href="#">Login</a>
                     </div>
                     <div class="d-flex justify-content-center">
-                        <a style="text-decoration: none" href="#">Cadastre-se</a>
-                    </div>
-                     <div class="d-flex justify-content-center">
-                        <a style="text-decoration: none" href="{% url 'produto:lista_produtos'%}">Listar Produtos</a>
+                        <a style="text-decoration: none" href="#">Registrar-se</a>
                     </div>
                 </div>
-                <div class="d-none d-sm-block p-3">
+                <div class="d-block d-lg-none">
+                    <div class="d-flex justify-content-center">
+                        <a style="text-decoration: none" class="pl-1" href="#">Login</a>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <a style="text-decoration: none" href="#">Registrar</a>
+                    </div>
+                </div>
+                <div class="d-none d-lg-block p-1">
+                    <div class="d-flex justify-content-center">
+                        <a style="text-decoration: none" href="{% url 'produto:lista_produtos'%}">Listar Produtos</a>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <a style="text-decoration: none" href="{% url 'produto:cadastra_produtos'%}">Cadastrar Produtos</a>
+                    </div>
+                </div>
+                <div class="d-block d-lg-none">
+                    <div class="d-flex justify-content-center">
+                        <a style="text-decoration: none" href="{% url 'produto:lista_produtos'%}">Listar</a>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <a style="text-decoration: none" href="{% url 'produto:cadastra_produtos'%}">Cadastrar</a>
+                    </div>
+                </div>
+                <div class="d-none d-sm-block p-1">
                     <a style="text-decoration: none" href="#">
                         <img src="{% static 'images/sacola.png' %}" style="width: 35px" alt="Carrinho">
                         Sacola
