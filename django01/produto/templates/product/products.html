@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block titulo %}
+   Pesquisa de Produtos
+{% endblock %}
+
+{% block corpo %}
+
+   <h5 class="mb-3">Lista de Produtos</h5>
+   <table style='width:100%'
+          class='table table-striped table-sm table-bordered table-responsive mb-4'>
+      <thead>
+         <tr>
+            <th class='text-center'>Imagem</th>
+            <th class='text-center'>Categoria</th>
+            <th class='text-center'>Nome</th>
+            <th class="text-center">Disponível</th>
+            <th class='text-center'>Marca</th>
+            <th class="text-center">Quantidade</th>
+            <th class="text-center">Preço Unitário</th>
+         </tr>
+      </thead>
+      <tbody>
+         {% for product in products %}
+         <tr>
+               <td width="10%" class="text-center align-middle">
+                  <img style="width:80px"
+                       src="{% static 'images/produtos/' %}{{ product.image }}" alt="{{ product.name }}">
+               </td>
+               <td width="10%" class="text-center align-middle">
+                  {{ product.category }}
+               </td>
+               <td width="35%" class="text-center align-middle">
+                  {{ product.name }}
+               </td>
+               <td width="10%" class="text-center align-middle">
+                  {{ product.get_availabe }}
+               </td>
+               <td width="15%" class="text-center align-middle">
+                  {{ product.branch }}
+               </td>
+               <td width="10%" class="text-right align-middle pr-3">
+                  {{ product.quantity }}
+               </td>
+               <td width="15%" class="text-right align-middle pr-3">
+                  R$ {{ product.price }}
+               </td>
+            </tr>
+         {% endfor %}
+      </tbody>
+   </table>
+
+{% endblock %}

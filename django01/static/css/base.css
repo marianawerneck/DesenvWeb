@@ -1,0 +1,22 @@
+.barra {
+    overflow-y: scroll;
+}
+
+
+.footer h6 {
+    color: whitesmoke;
+}
+
+.footer a {
+   color: #639bcf;
+}
+
+.footer a:hover {
+   color: #d8e6f3;
+}
+
+.footer {
+   background-color: #44484c;
+   color: #efefef;
+   padding: 30px 0;
+}
