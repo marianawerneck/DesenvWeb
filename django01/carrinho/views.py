@@ -62,6 +62,9 @@ def atualiza_carrinho(request):
     else:
         raise ValueError('Ocorreu um erro inesperado ao adicionar um produto ao carrinho.')
 
+def fecha_compra(request):
+    return render(request, 'carrinho/fecha_compra.html')
+
 def exibe_carrinho(request):
     carrinho = Carrinho(request)
     produtos_no_carrinho = carrinho.get_produtos()
@@ -79,6 +82,8 @@ def exibe_carrinho(request):
         'listas': zip(produtos_no_carrinho, lista_de_forms),
         'valor_do_carrinho': valor_do_carrinho
     })
+
+
 
 
 
