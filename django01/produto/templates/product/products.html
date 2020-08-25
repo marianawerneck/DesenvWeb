@@ -33,7 +33,9 @@
                   {{ product.category }}
                </td>
                <td width="35%" class="text-center align-middle">
-                  {{ product.name }}
+                   <a href="{% url 'produto:exibe_produto' product.id %}">
+                        {{ product.name }}
+                   </a>
                </td>
                <td width="10%" class="text-center align-middle">
                   {{ product.get_availabe }}

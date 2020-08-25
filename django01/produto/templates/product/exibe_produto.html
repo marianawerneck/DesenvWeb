@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block titulo %}
+   Cadastro de Produtos
+{% endblock %}
+
+{% block corpo %}
+   <div class='mb-4'>
+      <h5>Cadastro de Produtos</h5>
+      <hr class='mt-0'>
+   </div>
+
+   {% if messages %}
+      <div class="mb-3">
+         {% for message in messages %}
+            <ul class="list-group rounded">
+               <li style="padding-top: 7px; padding-bottom: 7px"
+                   class="list-group-item list-group-item-info">
+                  {{ message }}
+               </li>
+            </ul>
+         {% endfor %}
+      </div>
+   {% endif %}
+
+   <div class="row mb-2">
+      <div class="col-lg-3 col-md-4">
+         <img class="mr-3" style="width: 210px"
+              src="{% static 'images/produtos/' %}{{product.image}}" alt="{{ product.name }}">
+      </div>
+      <div class="col-lg-9 col-md-8">
+         <div class="row">
+            <div class="col-xl-2 col-lg-3 col-4 font-weight-bold mb-1">Categoria</div>
+            <div class="col-xl-10 col-lg-9 col-8">{{ product.category }}</div>
+            <div class="col-xl-2 col-lg-3 col-4 font-weight-bold mb-1">Nome</div>
+            <div class="col-xl-10 col-lg-9 col-8">{{ product.name }}</div>
+            <div class="col-xl-2 col-lg-3 col-4 font-weight-bold mb-1">Marca</div>
+            <div class="col-xl-10 col-lg-9 col-8">{{ product.branch }}</div>
+            <div class="col-xl-2 col-lg-3 col-4 font-weight-bold mb-1">Preço</div>
+            <div class="col-xl-10 col-lg-9 col-8">{{ product.price }}</div>
+            <div class="col-xl-2 col-lg-3 col-4 font-weight-bold mb-1">Estoque</div>
+            <div class="col-xl-10 col-lg-9 col-8">{{ product.quantity }}</div>
+            <div class="col-xl-2 col-lg-3 col-4 font-weight-bold mb-1">Disponível</div>
+            <div class="col-xl-10 col-lg-9 col-8">{{ product.available }}</div>
+         </div>
+      </div>
+   </div>
+
+   <div class="form-group row" style="margin-bottom: 108px">
+      <div class="col-12">
+         <div class="form-inline">
+            <a href="{% url 'produto:edita_produto' product.id %}" class="btn btn-primary mr-3">
+               <img src="{% static 'images/skin/database_edit.png' %}" /> Editar
+            </a>
+         </div>
+      </div>
+   </div>
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+

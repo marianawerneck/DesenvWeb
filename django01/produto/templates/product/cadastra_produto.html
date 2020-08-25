@@ -1,0 +1,164 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block titulo %}
+   Cadastro de Produtos
+{% endblock %}
+
+{% block corpo %}
+   <div class='mb-4'>
+      <h5>Cadastro de Produtos</h5>
+      <hr class='mt-0'>
+   </div>
+
+   <form action="" method="POST" class="pb-4" novalidate style="min-height: 323px">
+      <div class="row mb-xl-3">
+         <div class="col-xl-6">
+            <div class="row">
+               <label for="id_nome" class="col-xl-2 font-weight-bold">Nome</label>
+               <div class="col-xl-10">
+                  {{ form.name }}
+                  {# <input type="text" name="nome" maxlength="100" required="" id="id_nome"> #}
+                  {% if form.name.errors %}
+                     <div class="alert alert-danger mb-0" role="alert" style="padding-top: 2px; padding-bottom: 2px">
+                        {% for error in form.name.errors %}
+                           <small>{{ error }}</small>
+                        {% endfor %}
+                     </div>
+                  {% endif %}
+               </div>
+            </div>
+         </div>
+         <div class="col-xl-6">
+            <div class="row">
+               <label for="id_descricao" class="col-xl-3 font-weight-bold">Marca</label>
+               <div class="col-xl-9">
+                  {{ form.branch }}
+                  {# <input type="text" name="descricao" maxlength="100" required="" id="id_descricao"> #}
+                  {% if form.branch.errors %}
+                     <div class="alert alert-danger mb-0" role="alert" style="padding-top: 2px; padding-bottom: 2px">
+                        {% for error in form.branch.errors %}
+                           <small>{{ error }}</small>
+                        {% endfor %}
+                     </div>
+                  {% endif %}
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <div class="row mb-xl-3">
+         <div class="col-xl-6">
+            <div class="row">
+               <label for="id_categoria" class="col-xl-2 font-weight-bold">Categoria</label>
+               <div class="col-xl-10">
+                  {{ form.category }}
+                  {% comment %}
+                     <select name="categoria" required="" id="id_categoria">
+                        <option value="" selected="">---------</option>
+                        <option value="1">Feminino</option>
+                        <option value="2">Masculino</option>
+                        <option value="3">Nacional</option>
+                        <option value="3">Internacional</option>
+                     </select>
+                  {% endcomment %}
+                  {% if form.category.errors %}
+                     <div class="alert alert-danger mb-0" role="alert" style="padding-top: 2px; padding-bottom: 2px">
+                        {% for error in form.category.errors %}
+                           <small>{{ error }}</small>
+                        {% endfor %}
+                     </div>
+                  {% endif %}
+               </div>
+            </div>
+         </div>
+
+      </div>
+
+      <div class="row mb-xl-3">
+         <div class="col-xl-6">
+            <div class="row">
+               <label for="id_preco" class="col-xl-2 font-weight-bold">Preço</label>
+               <div class="col-xl-10">
+                  {{ form.price }}
+                  {# <input type="number" name="preco" value="0" step="0.01" required="" id="id_preco"> #}
+                  {% if form.price.errors %}
+                     <div class="alert alert-danger mb-0" role="alert" style="padding-top: 2px; padding-bottom: 2px">
+                        {% for error in form.price.errors %}
+                           <small>{{ error }}</small>
+                        {% endfor %}
+                     </div>
+                  {% endif %}
+               </div>
+            </div>
+         </div>
+         <div class="col-xl-6">
+            <div class="row">
+               <label for="id_qtd_estoque" class="col-xl-3 font-weight-bold">Estoque</label>
+               <div class="col-xl-9">
+                  {{ form.quantity }}
+                  {# <input type="number" name="qtd_estoque" value="0" required="" id="id_qtd_estoque"> #}
+                  {% if form.quantity.errors %}
+                     <div class="alert alert-danger mb-0" role="alert" style="padding-top: 2px; padding-bottom: 2px">
+                        {% for error in form.quantity.errors %}
+                           <small>{{ error }}</small>
+                        {% endfor %}
+                     </div>
+                  {% endif %}
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <div class="row mb-3">
+         <div class="col-xl-6">
+            <div class="row">
+               <label for="id_imagem" class="col-xl-2 font-weight-bold">Imagem</label>
+               <div class="col-xl-10">
+                  {{ form.image }}
+                  {# <input type="text" name="imagem" maxlength="50" id="id_imagem"> #}
+                  {% if form.image.errors %}
+                     <div class="alert alert-danger mb-0" role="alert" style="padding-top: 2px; padding-bottom: 2px">
+                        {% for error in form.image.errors %}
+                           <small>{{ error }}</small>
+                        {% endfor %}
+                     </div>
+                  {% endif %}
+               </div>
+            </div>
+         </div>
+         <div class="col-xl-6">
+            <div class="row">
+               <div class="offset-xl-3 col-xl-9">
+                  <div class="form-check pl-0 mt-xl-0 mt-2">
+                     {{ form.available }}
+                     {# <input type="checkbox" name="disponivel" id="id_disponivel"> #}
+                     <label for="id_disponivel" class="form-check-label">Disponível?</label>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <div class="row mb-5">
+         <div class="col-xl-6">
+            <div class="row">
+               <div class="col-xl-10 offset-xl-2">
+                  {% csrf_token %}
+                  <button id="botao" type="submit" class="btn btn-primary">
+                     <img src="{% static 'images/skin/database_add.png' %}"> Cadastrar
+                  </button>
+               </div>
+            </div>
+         </div>
+      </div>
+
+   </form>
+
+{% endblock %}
+
+{% block domready %}
+
+
+{% endblock %}
