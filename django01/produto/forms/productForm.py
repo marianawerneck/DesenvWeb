@@ -50,9 +50,7 @@ class ProductForm(forms.ModelForm):
             'onkeypress': 'return (event.charCode >= 48 && event.charCode <= 57) || event.charCode == 44'
         })
 
-        self.fields['image'].error_messages={'required': 'Campo obrigatório'}
-        self.fields['image'].validators=[
-            RegexValidator(regex='^[a-z]+\.(jpg|png|gif|bmp)$', message='Nome de imagem inválido.')]
-        self.fields['image'].widget.attrs.update({'class': 'form-control form-control-sm'})
+        self.fields['image'].error_messages = {'required': 'Campo obrigatório'}
+        self.fields['image'].widget.attrs.update({'class': 'btn btn-outline-secondary btn-sm'})
         self.fields['image'].required = True
 

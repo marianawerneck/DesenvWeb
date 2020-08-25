@@ -12,7 +12,8 @@
       <hr class='mt-0'>
    </div>
 
-   <form action="" method="POST" class="pb-4" novalidate style="min-height: 323px">
+   <form action="{% url 'produto:cadastra_produto' %}" method="POST" class="pb-4"
+         enctype="multipart/form-data" novalidate style="min-height: 323px">
       <div class="row mb-xl-3">
          <div class="col-xl-6">
             <div class="row">
@@ -147,7 +148,11 @@
                <div class="col-xl-10 offset-xl-2">
                   {% csrf_token %}
                   <button id="botao" type="submit" class="btn btn-primary">
-                     <img src="{% static 'images/skin/database_add.png' %}"> Cadastrar
+                     {% if 'produto_id' in request.session %}
+                        <img src="{% static 'images/skin/database_edit.png' %}"> Alterar
+                     {% else %}
+                        <img src="{% static 'images/skin/database_add.png' %}"> Cadastrar
+                     {% endif %}
                   </button>
                </div>
             </div>

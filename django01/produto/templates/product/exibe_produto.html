@@ -25,11 +25,17 @@
       </div>
    {% endif %}
 
-   <div class="row mb-2">
-      <div class="col-lg-3 col-md-4">
-         <img class="mr-3" style="width: 210px"
-              src="{% static 'images/produtos/' %}{{product.image}}" alt="{{ product.name }}">
-      </div>
+   <div class="row mb-3">
+         <div class="col-lg-3 col-md-4">
+            {% if product.image %}
+               <img class="mr-3" style="width: 210px"
+                    src="{{product.image.url}}" alt="{{ product.name }}">
+            {% else %}
+               <div class="text-md-center mb-md-0 mb-2">
+                  Imagem não disponível
+               </div>
+            {% endif %}
+         </div>
       <div class="col-lg-9 col-md-8">
          <div class="row">
             <div class="col-xl-2 col-lg-3 col-4 font-weight-bold mb-1">Categoria</div>
@@ -48,15 +54,24 @@
       </div>
    </div>
 
-   <div class="form-group row" style="margin-bottom: 108px">
-      <div class="col-12">
-         <div class="form-inline">
-            <a href="{% url 'produto:edita_produto' product.id %}" class="btn btn-primary mr-3">
-               <img src="{% static 'images/skin/database_edit.png' %}" /> Editar
-            </a>
+   {% if product.id %}
+         <div class="form-group row">
+            <div class="col-12">
+               <div class="form-inline">
+                  <a href="{% url 'produto:edita_produto' product.id %}" class="btn btn-primary mr-3">
+                     <img src="{% static 'images/skin/database_edit.png' %}" /> Editar
+                  </a>
+
+                  <form action="{% url 'produto:remove_produto' %}" method="POST">
+                     {% csrf_token %}
+                     <button type="submit" class="btn btn-danger">
+                        <img src="{% static 'images/skin/database_delete.png' %}"> Remover
+                     </button>
+                  </form>
+               </div>
+            </div>
          </div>
-      </div>
-   </div>
+   {% endif %}
 
 {% endblock %}
 
