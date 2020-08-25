@@ -1,4 +1,5 @@
 {% load static %}
+{%load humanize %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -90,11 +91,33 @@
                         <img src="{% static 'images/sacola.png' %}" style="width: 35px" alt="Carrinho">
                         Sacola
                     </a>
+                     <div id="total-1" class="d-flex justify-content-center" style="font-size: 11px">
+                        {% if quantidade == 1 %}
+                            {{ quantidade }} item - R$ {{ preco_carrinho | floatformat:2 | intcomma }}
+                        {% else %}
+                            {{ quantidade }} itens - R$ {{ preco_carrinho | floatformat:2  | intcomma}}
+                        {% endif %}
+                    </div>
+                    {% if user.is_authenticated %}
+                        <div class="d-flex justify-content-center small">
+                            Efetuar<a style="text-decoration: none" href="{% url 'autenticacao:logout' %}"
+                                      class="pl-1">logout.</a>
+                        </div>
+                    {% endif %}
                 </div>
                 <div class="d-block d-sm-none">
                     <a style="text-decoration: none" href="#">
                         <img src="{% static 'images/sacola.png' %}" style="width: 35px" alt="Carrinho">
                     </a>
+                    <div id="total-2" class="d-flex justify-content-center" style="font-size: 11px">
+                        R$ {{ preco_carrinho | floatformat:2  | intcomma}}
+                    </div>
+                    {% if user.is_authenticated %}
+                        <div class="d-flex justify-content-center small">
+                            Efetuar<a style="text-decoration: none" href="{% url 'autenticacao:logout' %}"
+                                      class="pl-1">logout.</a>
+                        </div>
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -159,7 +182,89 @@
     <script src="{% static 'js/script.js' %}"></script>
     <script>
         $(document).ready(function(){
+                    {% block domready %}
 
+                $(".comprar").click(function(){
+                    this.blur()
+                    let botao_comprar = this
+                    let form = $(botao_comprar).prev()
+                    form.find("input[name='quantidade']").val(1)
+                    let url = form.attr('action')
+                    let formData = form.serializeArray()
+                    $.post(url, formData, function(resposta) {
+                        $(botao_comprar).fadeTo('fast', 0.3, function() {
+                            $(botao_comprar).hide()
+                            form.show()
+                        })
+                        let quantidade = $(resposta).find("#quantidade").text()
+                        let preco_carrinho = $(resposta).find("#preco-carrinho").text()
+                        if (quantidade == 1) {
+                            $("#total-1").text(quantidade + " item - R$ " + preco_carrinho)
+                        }
+                        else {
+                            $("#total-1").text(quantidade + " itens - R$ " + preco_carrinho)
+                        }
+                        $("#total-2").text("R$ " + preco_carrinho)
+                    })
+                })
+
+                $(".mais").click(function() {
+                    this.blur()
+                    var input = $(this).parent().prev()
+                    var num = +input.val() + 1
+                    if (num < 100) {
+                        input.val(num)
+                        let form = $(this).parent().parent().parent()
+                        let url = form.attr('action')
+                        let formData = form.serializeArray()
+                        $.post(url, formData, function(resposta) {
+                            let quantidade = $(resposta).find("#quantidade").text()
+                            let preco_carrinho = $(resposta).find("#preco-carrinho").text()
+                            if (quantidade == 1) {
+                                $("#total-1").text(quantidade + " item - R$ " + preco_carrinho)
+                            }
+                            else {
+                                $("#total-1").text(quantidade + " itens - R$ " + preco_carrinho)
+                            }
+                            $("#total-2").text("R$ " + preco_carrinho)
+                        })
+                    }
+                    else {
+                        return
+                    }
+                })
+
+                $(".menos").click(function() {
+                    this.blur()
+                    let botao_menos = this
+                    let input = $(botao_menos).parent().next()
+                    let num = +input.val() - 1
+                    if (num < 0) {
+                        num = 0
+                    }
+                    input.val(num)
+                    let form = $(botao_menos).parent().parent().parent()
+                    let botao_comprar = form.next()
+                    let url = form.attr('action')
+                    let formData = form.serializeArray()
+                    $.post(url, formData, function(resposta) {
+                        if (num == 0) {
+                            form.hide()
+                            $(botao_comprar).fadeTo('fast', 1)
+                        }
+                        let quantidade = $(resposta).find("#quantidade").text()
+                        let preco_carrinho = $(resposta).find("#preco-carrinho").text()
+                        if (quantidade == 1) {
+                            $("#total-1").text(quantidade + " item - R$ " + preco_carrinho)
+                        }
+                        else {
+                            $("#total-1").text(quantidade + " itens - R$ " + preco_carrinho)
+                        }
+                        $("#total-2").text("R$ " + preco_carrinho)
+                    })
+                })
+
+            {% endblock %}
         });
     </script>
 </body>

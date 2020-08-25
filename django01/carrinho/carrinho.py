@@ -1,6 +1,6 @@
 from decimal import Decimal
 
-from produto.models import Produto
+from produto.models import Product
 from projeto import settings
 
 
@@ -18,11 +18,11 @@ class Carrinho(object):
         #   {'1': {'id': '1', 'preco': '7.70', 'quantidade': 10, 'preco_total': '77.0'},
         #    '2': {'id': '2', 'preco': '3.30', 'quantidade': 3, 'preco_total': '9.90'}}
 
-        produto = Produto.objects.get(id=id)
+        produto = Product.objects.get(id=id)
 
         if id not in self.carrinho:
-            self.carrinho[id] = {'id': id, 'preco': str(produto.preco), 'quantidade': quantidade,
-                                 'preco_total': str(produto.preco * quantidade)}
+            self.carrinho[id] = {'id': id, 'preco': str(produto.price), 'quantidade': quantidade,
+                                 'preco_total': str(produto.price * quantidade)}
         else:
             self.carrinho[id]['quantidade'] = quantidade
             self.carrinho[id]['preco_total'] = str(self.carrinho[id]['quantidade'] * Decimal(self.carrinho[id]['preco']))
@@ -60,7 +60,7 @@ class Carrinho(object):
 
         lista = []
         for item in self.carrinho.values():
-            produto = Produto.objects.get(id=item['id'])
+            produto = Product.objects.get(id=item['id'])
             lista.append({'produto': produto,
                           'id': item['id'],
                           'preco': Decimal(item['preco']),
