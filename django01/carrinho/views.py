@@ -26,6 +26,12 @@ def lista_produtos(request, slug_da_categoria=None):
 
 def exibe_produto(request, id, slug_do_produto):
     produto = get_object_or_404(Product, id=id)
+    carrinho = Carrinho(request)
+    qtd = carrinho.get_quantidade_total(produto.id)
+    form = QuantidadeForm(initial={
+        'quantidade':qtd,
+        'id':produto.id
+    })
 
     return render(request, 'carrinho/exibe_produto.html', {'produto': produto})
 
@@ -56,6 +62,23 @@ def atualiza_carrinho(request):
     else:
         raise ValueError('Ocorreu um erro inesperado ao adicionar um produto ao carrinho.')
 
+def exibe_carrinho(request):
+    carrinho = Carrinho(request)
+    produtos_no_carrinho = carrinho.get_produtos()
+
+    lista_de_forms = []
+    for produto in produtos_no_carrinho:
+        lista_de_forms.append(QuantidadeForm(
+            initial={'quantidade': produto['quantidade'],
+                     'produto_id': produto['id']})
+        )
+
+    valor_do_carrinho = carrinho.get_preco_carrinho()
+
+    return render(request, 'carrinho/produtos_no_carrinho.html', {
+        'listas': zip(produtos_no_carrinho, lista_de_forms),
+        'valor_do_carrinho': valor_do_carrinho
+    })
 
 
 

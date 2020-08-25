@@ -87,8 +87,8 @@
                 </div>
                 {% endif %}
                 <div class="d-none d-sm-block p-1">
-                    <a style="text-decoration: none" href="#">
-                        <img src="{% static 'images/sacola.png' %}" style="width: 35px" alt="Carrinho">
+                    <a style="text-decoration: none" href="{% url 'carrinho:exibe_carrinho' %}">
+                        <img src="{% static 'images/sacola.png' %}" style="width: 35px" alt="Sacola">
                         Sacola
                     </a>
                      <div id="total-1" class="d-flex justify-content-center" style="font-size: 11px">
@@ -106,8 +106,8 @@
                     {% endif %}
                 </div>
                 <div class="d-block d-sm-none">
-                    <a style="text-decoration: none" href="#">
-                        <img src="{% static 'images/sacola.png' %}" style="width: 35px" alt="Carrinho">
+                    <a style="text-decoration: none"  href="{% url 'carrinho:exibe_carrinho' %}">
+                        <img src="{% static 'images/sacola.png' %}" style="width: 35px" alt="Sacola">
                     </a>
                     <div id="total-2" class="d-flex justify-content-center" style="font-size: 11px">
                         R$ {{ preco_carrinho | floatformat:2  | intcomma}}
