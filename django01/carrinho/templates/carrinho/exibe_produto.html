@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block titulo %}
+    Hortifruti
+{% endblock %}
+
+{% block corpo %}
+   <div class="row mt-4" style="min-height: 379px">
+      <div class="col-md-4 mb-4 mb-md-0">
+         <img class="img-fluid rounded" style="width: 300px" src="{{ produto.image.url }}">
+      </div>
+      <div class="col-md-8">
+         <h4>{{ produto.name }}</h4>
+         <h5><a style="text-decoration: none"
+                href="{{ produto.category.get_absolute_url }}">{{ produto.category }}</a></h5>
+         <p><strong>Preço: </strong>R$ {{ produto.price }} por unidade.</p>
+      </div>
+   </div>
+{% endblock %}

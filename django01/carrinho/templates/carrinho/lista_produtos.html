@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block titulo %}
+    Perfumaria
+{% endblock %}
+
+{% block estilo %}
+    <style>
+
+    </style>
+{% endblock %}
+
+{% block corpo %}
+
+    <div style="min-height: 387px">
+       <div class="row">
+
+
+          <div class="col-lg-10">
+             <h5>{% if not categoria %}Produtos{% else %}{{ categoria.name }}{% endif %}</h5>
+             <div class="row">
+                {% for produto in produtos %}
+                   <div class="col-xl-2 col-md-3 col-sm-4 col-6" style="padding-right: 0px; padding-left: 0px;">
+                      <div class="card border-0 mb-3" style="margin-right: 6px; margin-left: 6px;">
+                          <a href="{{ produto.get_absolute_url }}">
+                             <img class="card-img-top rounded" src="{{ produto.image.url }}" alt="{{ produto.name }}">
+                          </a>
+                          <div class="card-body bg-transparent">
+                              <h5 class="card-title">
+                                  <a href="{{ produto.get_absolute_url }}" style="text-decoration: none;">
+                                     {{ produto.name }}
+                                  </a>
+                              </h5>
+                              <p class="card-text">{{ produto.branch }}</p>
+                              <p class="card-text font-weight-bold" style="color: #dc3545;">R$ {{ produto.price }}</p>
+                          </div>
+                      </div>
+                   </div>
+                {% endfor %}
+             </div>
+          </div>
+
+           <div class="col-lg-2">
+             <h5>Categorias</h5>
+             <div class="nav flex-column nav-pills">
+                <a class="nav-link {% if not categoria %}active{% endif %}" href="/">Todos</a>
+                {% for cat in categorias %}
+                   <a class="nav-link {% if cat == categoria %}active{% endif %}" href="{{ cat.get_absolute_url }}">
+                      {{ cat.name }}
+                   </a>
+                {% endfor %}
+             </div>
+          </div>
+
+       </div>
+    </div>
+
+{% endblock %}
