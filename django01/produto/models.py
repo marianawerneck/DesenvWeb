@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 from categoria.models import Category
 
@@ -26,3 +27,6 @@ class Product(models.Model):
             return 'Sim'
         else:
             return 'Não'
+
+    def get_absolute_url(self):
+        return reverse('carrinho:exibe_produto', args=[self.id, self.slug])
