@@ -1,13 +1,77 @@
 {% extends "base.html" %}
+{% load static %}
+
 {% block titulo %}
-    Index.html de projeto
+    Perfumaria
 {% endblock %}
 
 {% block corpo %}
-    {{ phrase }}
-    <br>
-    <br>
-   <div style="height: 390px">
+<div style="height: 1000px">
+    <div id="carousel-id" class="carousel slide d-block mb-4 row" data-ride="carousel" data-interval="3000" style="height: 500px">
+        <ol class="carousel-indicators">
+            <li data-target="#carousel-id" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel-id" data-slide-to="1"></li>
+        </ol>
+        <div class="carousel-inner h-100">
+            <div class="carousel-item active">
+                <a href="{%   url  'carrinho:lista_produtos' %}">
+                    <img src="{% static 'images/banner2.png' %}" class="d-block w-100 h-75" alt="Veja mais produtos"/>
+                </a>
+            </div>
+            <div class="carousel-item h-100">
+                <a href="{%   url  'carrinho:lista_produtos' %}importados">
+                    <img src="{% static 'images/banner1.png' %}" class="d-block w-100" alt="Veja mais produtos">
+                </a>
+            </div>
+            <div class="carousel-item h-100">
+                <a href="{%   url  'carrinho:lista_produtos' %}femininos">
+                    <img src="{% static 'images/banner3.png' %}" class="d-block w-100" alt="Veja mais produtos">
+                </a>
+            </div>
+        </div>
+        <a href="#carousel-id" class="carousel-control-prev" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true">
+            <span class="sr-only">Anterior</span>
+            </span>
+        </a>
+        <a href="#carousel-id" class="carousel-control-next" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true">
+            <span class="sr-only">Próximo</span>
+            </span>
+        </a>
+    </div>
+    <div class="container row mx-auto d-block">
+        <div class="mx-auto">
+            <div class="card" style="width: 18rem; height: 26rem">
+              <img class="card-img-top" src="{% static 'images/quemsomos.png' %}" alt="Quem Somos" style="height: 12rem">
+              <div class="card-body">
+                <h5 class="card-title">Quem Somos?</h5>
+                <p class="card-text">Saiba mais sobre a equipe da Perfumaria.</p>
+                <a href="#" class="btn btn-primary">Saiba mais...</a>
+              </div>
+            </div>
+        </div>
+        <div class="mx-auto">
+            <div class="card" style="width: 18rem; height: 26rem">
+              <img class="card-img-top" src="{% static 'images/entrega.png' %}" alt="Entregas" style="height: 12rem">
+              <div class="card-body">
+                <h5 class="card-title">Entregas</h5>
+                <p class="card-text">Saiba mais sobre nossa política de entregas.</p>
+                <a href="#" class="btn btn-primary">Saiba mais...</a>
+              </div>
+            </div>
+        </div>
+         <div class="mx-auto">
+            <div class="card" style="width: 18rem; height: 26rem">
+              <img class="card-img-top" src="{% static 'images/parceiro.png' %}" alt="Entregas" style="height: 12rem">
+              <div class="card-body">
+                <h5 class="card-title">Seja um parceiro</h5>
+                <p class="card-text">Saiba mais sobre nossa política de lojas físicas.</p>
+                <a href="#" class="btn btn-primary">Saiba mais...</a>
+              </div>
+            </div>
+        </div>
 
-   </div>
+    </div>
+</div>
 {% endblock %}

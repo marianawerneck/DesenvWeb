@@ -21,7 +21,7 @@ from django.urls import path, include
 from projeto import views, settings
 
 urlpatterns = [
-    path('', lambda request: redirect('carrinho/')),
+    path('', views.index),
     path('carrinho/', include('carrinho.urls')),
     path('produto/', include('produto.urls')),
     path('admin/', admin.site.urls),
